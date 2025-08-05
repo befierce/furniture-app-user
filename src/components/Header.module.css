@@ -1,0 +1,72 @@
+.headerContainer {
+  width: 100%;
+  background-color: rgb(251, 243, 226);
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 10px 20px;
+  flex-wrap: wrap; /* Wrap for small screens */
+  box-sizing: border-box;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Times New Roman", Times, serif;
+  color: rgb(156, 187, 77);
+}
+
+.storeLogo {
+  height: 80px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.headerSearchFieldContainer {
+  /* flex: 0; */
+  display: flex;
+  padding-left: 40px;
+  justify-content: flex-start;
+  /* margin-top: 10px; */
+  width: 400px;
+}
+
+.searchInput {
+  width: 100%;
+  /* max-width: 400px; */
+  height: 35px;
+  border-radius: 15px;
+  padding: 0 15px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .headerContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .headerSearchFieldContainer {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .searchInput {
+    width: 90%;
+  }
+}
+.loginRegisterContainer {
+  width: 200px;
+  padding-left: 60px;
+}
+.loginRegisterText {
+  font-size: 18px;
+  font-weight: bold;
+}
