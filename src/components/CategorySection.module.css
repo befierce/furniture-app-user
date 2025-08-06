@@ -1,0 +1,39 @@
+
+.categoryText{
+    font-size: 30px;
+    font-family: Poppins;
+    font-weight: 1900;
+    color: rgb(169, 169, 8);
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.viewAllSection{
+    display: flex; 
+    justify-content: center;  
+    font-family: Poppins;  
+    font-weight: 900;
+    padding: 5px;
+    color: rgb(98, 98, 6);
+    align-items: center;
+    font-size: 15px;
+}
+
+.arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 30px;
+    background-color: rgba(174, 152, 240, 0.1);
+}
+
+.categoriesSliderWrappper{
+    padding-left: 2.2rem;
+    padding-right: 1.2rem;
+}
