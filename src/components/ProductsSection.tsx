@@ -1,7 +1,7 @@
 import CategorySection from "./CategorySection";
 import { useState, useRef, useEffect } from "react";
 import { db } from "../firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, limit, query } from "firebase/firestore";
 import styles from "./ProductsSection.module.css";
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,8 @@ const ProductsSection = () => {
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, "products-list"));
+        const q = query(collection(db, "products-list"), limit(6));
+      const querySnapshot = await getDocs(q);
 
       const data = querySnapshot.docs.map(
         (doc) =>
