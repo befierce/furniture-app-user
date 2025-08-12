@@ -1,0 +1,47 @@
+
+
+
+
+
+
+.productsWrapperOuterMost{
+    width: 100%;
+    height: fit-content;
+    border-width: 2px;
+    /* border-color: black; */
+    /* border-style: solid; */
+    display:flex;
+}
+
+.productContainerOuter{
+    width: 33.33%;
+    height: 800px;
+    display: flex;
+    
+}
+
+.productContainerInner{
+    padding: 10px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+.imageSectionContainer{
+    width: 100%;
+    padding-left: 6%;
+}
+
+.imageSectionContainer img{
+     width: 100%;
+    height: 600px;
+     object-fit: cover;
+}
+
+.productMetaDataContainer{
+    display: block;
+}
+
+.productMetaDataContainerInner{
+    padding-left: 35px;
+}

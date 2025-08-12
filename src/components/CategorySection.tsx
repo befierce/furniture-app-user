@@ -16,42 +16,41 @@ const CategorySection = () => {
             spaceBetween={20}
             slidesPerView={3}
           >
-            <a>
-              <SwiperSlide>
+            <SwiperSlide>
+              <a href="/hello">
                 <img src="/tv units.webp"></img>
-              </SwiperSlide>
-            </a>
-            <a>
-              <SwiperSlide>
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/hello">
                 <img src="/shoeRacks.webp"></img>
-              </SwiperSlide>
-            </a>
-            <a>
-              <SwiperSlide>
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/products">
                 <img src="/wardrobes.webp"></img>
-              </SwiperSlide>
-            </a>
-
-            <a>
-              <SwiperSlide>
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/hello">
                 <img src="recliners.webp"></img>
-              </SwiperSlide>
-            </a>
-            <a>
-              <SwiperSlide>
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/hello">
                 <img src="/bookcases.webp"></img>
-              </SwiperSlide>
-            </a>
-            <a>
-              <SwiperSlide>
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/products/chairs">
                 <img src="/officechairs.webp"></img>
-              </SwiperSlide>
-            </a>
-            <a>
-              <SwiperSlide>
+              </a>
+            </SwiperSlide>
+            <SwiperSlide>
+              <a href="/hello">
                 <img src="/Plastic-Chairs.webp"></img>
-              </SwiperSlide>
-            </a>
+              </a>
+            </SwiperSlide>
           </Swiper>
         </div>
       </div>
