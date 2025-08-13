@@ -59,7 +59,7 @@ const ProductPage = () => {
           </div>
           <AddToCartButton id="njncjjds"></AddToCartButton>
           <div className={styles.imageSectionLower}>
-            <img src="/public/banner-emi-delivey.png"></img>
+            <img src="/banner-emi-delivey.png"></img>
           </div>
           <div className={styles.buyOrAddToCart}>
 

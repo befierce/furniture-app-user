@@ -1,6 +1,11 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = () => {
+  const state = useSelector((state) => state);
+  const loginHandler = ()=>{
+      console.log(state)
+  }
   return (
     <div className={styles.headerContainer}>
       <Link to="/home" style={{ textDecoration: "none", color: "inherit" }}>
@@ -17,7 +22,7 @@ const Header = () => {
         <input type="search" className={styles.searchInput}></input>
       </div>
       <div className={styles.loginRegisterContainer}>
-        <span className={styles.loginRegisterText}>Login / Register</span>
+        <span className={styles.loginRegisterText}><button onClick={loginHandler}>Login / Register</button></span>
       </div>
     </div>
   );
