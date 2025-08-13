@@ -2,28 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-
-// category
-// :
-// "Chair"
-// description
-// :
-// "sandle wood chair backrest reclination"
-// imageUrl
-// :
-// "https://images.unsplash.com/photo-1712926382189-dacbc6b89a01?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-// price
-// :
-// "6600"
-// quantity
-// :
-// "10"
-// title
-// :
-// "wooden chair"
-// vendor
-// :
-// "Glory Furnitures"
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import CategorySection from "../components/CategorySection";
+import styles from "./ProductPage.module.css";
+import AddToCartButton from "../components/AddToCartButton";
 interface Product {
   category: string;
   description: string;
@@ -53,10 +36,39 @@ const ProductPage = () => {
   }, []);
   return (
     <>
-      <h1>{product?.title}</h1>
-      {product?.imageUrl && (
-        <img src={product.imageUrl} alt={product.title} width={150} />
-      )}
+      <Header />
+      <div className={styles.productWrapper}>
+        <div className={styles.imageSection}>
+          <div className={styles.imageSectionProduct}>
+            {product?.imageUrl && (
+              <img src={product.imageUrl} alt={product.title} />
+            )}
+          </div>
+          
+        </div>
+
+        <div className={styles.informationSection}>
+          <div className={styles.titleSection}>
+            <h1>{product?.title}</h1>
+          </div>
+          <div className={styles.description}>
+            <p>{product?.description}</p>
+          </div>
+          <div className={styles.price}>
+            <h2>{`Price - $ ${product?.price}`}</h2>
+          </div>
+          <AddToCartButton id="njncjjds"></AddToCartButton>
+          <div className={styles.imageSectionLower}>
+            <img src="/public/banner-emi-delivey.png"></img>
+          </div>
+          <div className={styles.buyOrAddToCart}>
+
+          </div>
+        </div>
+      </div>
+
+      <CategorySection />
+      <Footer></Footer>
     </>
   );
 };
