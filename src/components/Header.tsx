@@ -1,17 +1,21 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./LoginForm";
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const state = useSelector((state) => state);
+  // const [showLoginRegisterButton, setShowLoginRegisterButton] = useState(true);
+  const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
   const loginHandler = () => {
     setShowLoginForm(true);
   };
   const closeLoginForm = () => {
     setShowLoginForm(false);
+  };
+  const logoutHandler = () => {
+    console.log("log out button clicked");
   };
   return (
     <>
@@ -31,7 +35,14 @@ const Header = () => {
         </div>
         <div className={styles.loginRegisterContainer}>
           <span className={styles.loginRegisterText}>
-            <button onClick={loginHandler}>Login / Register</button>
+            {!isLoggedIn && (
+              <button onClick={loginHandler}>Login / Register</button>
+            )}
+          </span>
+        </div>
+        <div className={styles.logoutContainer}>
+          <span className={styles.logout}>
+            {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}
           </span>
         </div>
       </div>
