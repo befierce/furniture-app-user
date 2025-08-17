@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./LoginForm";
+import CartButton from "./CartButton";
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  // const [showLoginRegisterButton, setShowLoginRegisterButton] = useState(true);
   const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
   const loginHandler = () => {
     setShowLoginForm(true);
@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <>
       <div className={styles.headerContainer}>
-        <Link to="/home" style={{ textDecoration: "none", color: "inherit" }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <div className={styles.logoWrapper}>
             <img
               src="/glory-furniture-logo.jpg"
@@ -38,6 +38,11 @@ const Header = () => {
             {!isLoggedIn && (
               <button onClick={loginHandler}>Login / Register</button>
             )}
+          </span>
+        </div>
+        <div className={styles.loginRegisterContainer}>
+          <span className={styles.loginRegisterText}>
+            {isLoggedIn && <CartButton/>}
           </span>
         </div>
         <div className={styles.logoutContainer}>

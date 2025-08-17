@@ -44,7 +44,6 @@ const ProductPage = () => {
               <img src={product.imageUrl} alt={product.title} />
             )}
           </div>
-          
         </div>
 
         <div className={styles.informationSection}>
@@ -57,13 +56,11 @@ const ProductPage = () => {
           <div className={styles.price}>
             <h2>{`Price - $ ${product?.price}`}</h2>
           </div>
-          <AddToCartButton id="njncjjds"></AddToCartButton>
+          <AddToCartButton product={{product, id}}></AddToCartButton>
           <div className={styles.imageSectionLower}>
             <img src="/banner-emi-delivey.png"></img>
           </div>
-          <div className={styles.buyOrAddToCart}>
-
-          </div>
+          <div className={styles.buyOrAddToCart}></div>
         </div>
       </div>
 

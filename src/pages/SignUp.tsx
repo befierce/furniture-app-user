@@ -41,6 +41,7 @@ const SignUp = ({ onClose }: SignUpProps) => {
         name,
         email,
         createdAt: new Date(),
+        cart:[]
       });
 
       alert("User registered successfully!");
