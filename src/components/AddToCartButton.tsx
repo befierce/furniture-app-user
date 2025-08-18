@@ -10,7 +10,7 @@ const AddToCartButton = (props: any) => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const productId = props.product.id;
   const productDetails = props.product.product;
-  const uid = useSelector((state: any) => state.auth.user.uid);
+  const uid = useSelector((state: any) => state.auth.user?.uid);
   console.log("uid of user", uid);
   const addToCartHandler = async () => {
     if (!isLoggedIn) {

@@ -1,0 +1,127 @@
+.heading {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  color: rgb(2, 51, 97);
+}
+
+.cartItemsWrapper {
+}
+.cartItemsWrapper ul {
+  list-style-type: none;
+}
+
+.cartItemContainer {
+  display: flex;
+}
+.cartItemContainer li {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 30px;
+}
+
+ul {
+  padding-inline-start: 10px;
+}
+.lowereSectionQuantity{
+    padding-top: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.724);
+}
+.itemDataContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.itemTitleContainer {
+}
+.itemPriceAndQuantityContainer {
+  display: flex;
+  font-weight: 100;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.712);
+}
+.totalPrice {
+  font-weight: 100;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.817);
+}
+.upperDivision {
+  display: flex;
+  /* padding: px; */
+}
+.itemTitlePriceAndQuantityContainer {
+  display: flex;
+  margin-left: 40px;
+  flex-direction: column;
+}
+.lowerDivision {
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+  justify-content: space-between;
+}
+.removeButtonContainer{
+    font-size: 15px;
+    font-weight: 600;
+
+}
+.removeButton{
+    width: 90px;
+}
+.productImageContainer {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+}
+
+.productImageContainer img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.lowerDivision {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* yahi fix karega alignment */
+  margin-top: 8px;
+  padding: 0 5px;
+}
+
+.removeButtonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.removeButton {
+  width: 90px;
+  padding: 5px 10px;
+  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.quantityContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* button aur quantity ke beech spacing */
+}
+
+.quantityButton {
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-size: 14px;
+}
