@@ -1,8 +1,9 @@
-.heading {
+.cartHeader {
   font-size: 30px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   padding-bottom: 20px;
   color: rgb(2, 51, 97);
 }

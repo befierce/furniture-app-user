@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import styles from "./Cart.module.css";
+import PlaceOrderButton from "./PlaceOrderButton";
 interface cartProps {
   uid: string;
   onClose: () => void;
@@ -61,10 +62,9 @@ const Cart = (props: cartProps) => {
 
     const updatedCart = cartItems.map((item) => {
       if (item.productId === productId) {
-
         return {
           ...item,
-          quantityInCart: item.quantityInCart + 1, 
+          quantityInCart: item.quantityInCart + 1,
         };
       }
       return item;
@@ -80,7 +80,7 @@ const Cart = (props: cartProps) => {
   const removeItemHandler = async (productId: string) => {
     console.log(productId);
     const userRef = doc(db, "users", uid);
-    const updatedCart = cartItems.filter(
+    const updatedCart = cartItems.filter(   
       (item) => item.productId !== productId
     );
     try {
@@ -90,9 +90,15 @@ const Cart = (props: cartProps) => {
       console.error("Error removing item:", error);
     }
   };
+  const handleOrderPlaced = () => {
+  setCartItems([]);
+};
   return (
     <Modal onClose={props.onClose}>
-      <div className={styles.heading}>Cart</div>
+      <div className={styles.cartHeader}>
+        <h2>Cart</h2>
+        <PlaceOrderButton cartItems={cartItems} uid={uid} onOrderPlaced = {handleOrderPlaced}/>
+      </div>
       <div className={styles.cartItemsWrapper}>
         {loading ? (
           <p>Loading...</p>
