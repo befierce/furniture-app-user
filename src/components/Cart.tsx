@@ -37,11 +37,52 @@ const Cart = (props: cartProps) => {
     };
     fetchCart();
   }, []);
+  const decreaseQuantityHandler = async (productId: string) => {
+    const userRef = doc(db, "users", uid);
+    const updatedCart = cartItems.map((item) => {
+      if (item.productId === productId) {
+        return {
+          ...item,
+          quantityInCart: item.quantityInCart > 1 ? item.quantityInCart - 1 : 1,
+        };
+      }
+      return item;
+    });
+    try {
+      await updateDoc(userRef, { cart: updatedCart });
+      setCartItems(updatedCart);
+    } catch (err) {
+      console.log("err updating cart", err);
+    }
+  };
 
+  const increaseQuantityHandler = async (productId: string) => {
+    const userRef = doc(db, "users", uid);
+
+    const updatedCart = cartItems.map((item) => {
+      if (item.productId === productId) {
+
+        return {
+          ...item,
+          quantityInCart: item.quantityInCart + 1, 
+        };
+      }
+      return item;
+    });
+
+    try {
+      await updateDoc(userRef, { cart: updatedCart });
+      setCartItems(updatedCart);
+    } catch (err) {
+      console.log("Error updating cart", err);
+    }
+  };
   const removeItemHandler = async (productId: string) => {
     console.log(productId);
     const userRef = doc(db, "users", uid);
-    const updatedCart = cartItems.filter((item) => item.productId !== productId);
+    const updatedCart = cartItems.filter(
+      (item) => item.productId !== productId
+    );
     try {
       await updateDoc(userRef, { cart: updatedCart });
       setCartItems(updatedCart);
@@ -106,11 +147,25 @@ const Cart = (props: cartProps) => {
                     </div>
 
                     <div className={styles.quantityContainer}>
-                      <button className={styles.quantityButton}>-</button>
+                      <button
+                        className={styles.quantityButton}
+                        onClick={() => {
+                          decreaseQuantityHandler(item.productId);
+                        }}
+                      >
+                        -
+                      </button>
                       <div className={styles.lowereSectionQuantity}>
                         {item.quantityInCart}
                       </div>
-                      <button className={styles.quantityButton}>+</button>
+                      <button
+                        className={styles.quantityButton}
+                        onClick={() => {
+                          increaseQuantityHandler(item.productId);
+                        }}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </li>
