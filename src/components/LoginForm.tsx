@@ -37,7 +37,7 @@ const LoginForm = ({ onClose }: LoginProps) => {
       const user = userCredential.user;
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
-
+      console.log("docsnap", docSnap)
       if (docSnap.exists()) {
         console.log("User profile:", docSnap.data());
         const uid = userCredential.user.uid;
@@ -55,7 +55,8 @@ const LoginForm = ({ onClose }: LoginProps) => {
         alert(`Welcome ${docSnap.data().name}!`);
       } else {
         console.warn("No profile found for user");
-        alert("Login successful but no profile found");
+        
+        alert("no profile found");
       }
       onClose();
     } catch (error: any) {

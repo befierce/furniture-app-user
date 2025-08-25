@@ -5,7 +5,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 // Firebase config
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyCZTUUzbf7tqWw7OQ3r9DRxogSuttgPLbA",
   authDomain: "furniture-web-app-ef64f.firebaseapp.com",
   projectId: "furniture-web-app-ef64f",

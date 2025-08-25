@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./LoginForm";
 import CartButton from "./CartButton";
+import OrdersButton from "./OrdersButton";
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -43,6 +44,11 @@ const Header = () => {
         <div className={styles.loginRegisterContainer}>
           <span className={styles.loginRegisterText}>
             {isLoggedIn && <CartButton/>}
+          </span>
+        </div>
+        <div className={styles.loginRegisterContainer}>
+          <span className={styles.loginRegisterText}>
+            {isLoggedIn && <OrdersButton/>}
           </span>
         </div>
         <div className={styles.logoutContainer}>

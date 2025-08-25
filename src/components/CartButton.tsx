@@ -2,10 +2,10 @@ import styles from "./CartButton.module.css";
 import Cart from "./Cart";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import LoginForm from "./LoginForm";
-import { getDoc, doc, updateDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
-import Modal from "./Modal";
+// import LoginForm from "./LoginForm";
+// import { getDoc, doc, updateDoc } from "firebase/firestore";
+// import { db } from "../firebaseConfig";
+// import Modal from "./Modal";
 const CartButton = (props: any) => {
   const [showCart, setShowCart] = useState(false);
   const uid = useSelector((state: any) => state.auth.user.uid);
