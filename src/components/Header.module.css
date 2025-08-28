@@ -2,10 +2,9 @@
   width: 100%;
   background-color: rgb(251, 243, 226);
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   padding: 10px 20px;
-  flex-wrap: wrap; /* Wrap for small screens */
+  flex-wrap: wrap; 
   box-sizing: border-box;
 }
 

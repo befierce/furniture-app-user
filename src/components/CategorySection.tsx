@@ -16,39 +16,39 @@ const CategorySection = () => {
             spaceBetween={20}
             slidesPerView={3}
           >
-            <SwiperSlide>
+            {/* <SwiperSlide>
               <a href="/hello">
                 <img src="/tv units.webp"></img>
               </a>
-            </SwiperSlide>
+            </SwiperSlide> */}
             <SwiperSlide>
-              <a href="/hello">
-                <img src="/shoeRacks.webp"></img>
+              <a href="/products/categories/shoe-racks">
+                <img src="/shoeRacks.webp" alt="Shoe-Racks"></img>
               </a>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/products">
-                <img src="/wardrobes.webp"></img>
+              <a href="/products/categories/wardrobes">
+                <img src="/wardrobes.webp" alt="wardrobes"></img>
               </a>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/hello">
-                <img src="recliners.webp"></img>
+              <a href="/products/categories/recliners">
+                <img src="recliners.webp" alt="recliners"></img>
               </a>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/hello">
-                <img src="/bookcases.webp"></img>
+              <a href="/products/categories/bookcases">
+                <img src="/bookcases.webp" alt="bookcases"></img>
               </a>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/products/chairs">
-                <img src="/officechairs.webp"></img>
+              <a href="/products/categories/chair">
+                <img src="/officechairs.webp" alt="chair"></img>
               </a>
             </SwiperSlide>
             <SwiperSlide>
-              <a href="/hello">
-                <img src="/Plastic-Chairs.webp"></img>
+              <a href="/products/categories/chair">
+                <img src="/Plastic-Chairs.webp" alt="chair"></img>
               </a>
             </SwiperSlide>
           </Swiper>

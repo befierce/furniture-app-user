@@ -4,6 +4,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import styles from "./Cart.module.css";
 import PlaceOrderButton from "./PlaceOrderButton";
+import { firebaseConfig } from "../firebaseConfig";
 interface cartProps {
   uid: string;
   onClose: () => void;
@@ -22,12 +23,16 @@ const Cart = (props: cartProps) => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
+        const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/users`;
+        const fetchData = await fetch(url);
+        console.log("data fetched using api",await fetchData.json());
         const userRef = doc(db, "users", uid);
         const snapshot = await getDoc(userRef);
         if (snapshot.exists()) {
           const data = snapshot.data();
           console.log("data in the cart", data);
           const items = (data.cart || []) as CartItem[];
+          console.log("items in the cart",items)
           setCartItems(items);
         }
       } catch (err) {
@@ -38,6 +43,10 @@ const Cart = (props: cartProps) => {
     };
     fetchCart();
   }, []);
+
+  // useEffect(()=>{
+  //   console.log("items in the cart",cartItems)
+  // },[cartItems])
   const decreaseQuantityHandler = async (productId: string) => {
     const userRef = doc(db, "users", uid);
     const updatedCart = cartItems.map((item) => {
@@ -80,7 +89,7 @@ const Cart = (props: cartProps) => {
   const removeItemHandler = async (productId: string) => {
     console.log(productId);
     const userRef = doc(db, "users", uid);
-    const updatedCart = cartItems.filter(   
+    const updatedCart = cartItems.filter(
       (item) => item.productId !== productId
     );
     try {
@@ -91,13 +100,17 @@ const Cart = (props: cartProps) => {
     }
   };
   const handleOrderPlaced = () => {
-  setCartItems([]);
-};
+    setCartItems([]);
+  };
   return (
     <Modal onClose={props.onClose}>
       <div className={styles.cartHeader}>
         <h2>Cart</h2>
-        <PlaceOrderButton cartItems={cartItems} uid={uid} onOrderPlaced = {handleOrderPlaced}/>
+        <PlaceOrderButton
+          cartItems={cartItems}
+          uid={uid}
+          onOrderPlaced={handleOrderPlaced}
+        />
       </div>
       <div className={styles.cartItemsWrapper}>
         {loading ? (

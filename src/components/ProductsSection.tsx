@@ -1,9 +1,8 @@
-import CategorySection from "./CategorySection";
-import { useState, useRef, useEffect } from "react";
-import { db } from "../firebaseConfig";
-import { collection, getDocs, limit, query } from "firebase/firestore";
-import styles from "./ProductsSection.module.css";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import styles from "./ProductsSection.module.css";
+import CategorySection from "./CategorySection";
+import { firebaseConfig } from "../firebaseConfig"; // ensure projectId is there
 
 interface Product {
   id: string;
@@ -17,22 +16,29 @@ interface Product {
 
 const ProductsSection = () => {
   const [products, setProducts] = useState<Product[]>([]);
+
   useEffect(() => {
     const fetchData = async () => {
-        const q = query(collection(db, "products-list"), limit(6));
-      const querySnapshot = await getDocs(q);
-
-      const data = querySnapshot.docs.map(
-        (doc) =>
-          ({
-            id: doc.id,
-            ...doc.data(),
-          } as Product)
-      );
-      console.log("data", data);
-      setProducts(data);
+      try {
+        const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/products-list?pageSize=6`;
+        const res = await fetch(url);
+        const json = await res.json();
+        const data = json.documents.map((doc: any) => ({
+          id: doc.name.split("/").pop(),
+          category: doc.fields.category?.stringValue || "",
+          title: doc.fields.title?.stringValue || "",
+          vendor: doc.fields.vendor?.stringValue || "",
+          description: doc.fields.description?.stringValue || "",
+          price: Number(doc.fields.price?.integerValue || Number(doc.fields.price?.stringValue) || 0),
+          imageUrl: doc.fields.imageUrl?.stringValue || "",
+        }));
+        console.log(data)
+        setProducts(data);
+      } catch (err) {
+        console.error("Error fetching data", err);
+      }
     };
-    console.log("products", products);
+
     fetchData();
   }, []);
 

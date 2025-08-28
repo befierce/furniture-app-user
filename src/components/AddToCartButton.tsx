@@ -33,6 +33,7 @@ const AddToCartButton = (props: any) => {
           cart[existingIndex].quantityInCart += 1;
         } else {
           cart.push({ productId, ...productDetails, quantityInCart: 1 });
+          console.log("product adding to cart data", cart);
         }
         await updateDoc(userRef, { cart });
         console.log("✅ Cart updated successfully");

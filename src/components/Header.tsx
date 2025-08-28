@@ -5,7 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import LoginForm from "./LoginForm";
 import CartButton from "./CartButton";
 import OrdersButton from "./OrdersButton";
-
+// import { logout } from "../store/authSlice";
+import LogOutButton from "./LogOutButton";
+import LoginRegisterButton from "./LoginRegisterButton";
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
@@ -14,9 +16,6 @@ const Header = () => {
   };
   const closeLoginForm = () => {
     setShowLoginForm(false);
-  };
-  const logoutHandler = () => {
-    console.log("log out button clicked");
   };
   return (
     <>
@@ -34,29 +33,33 @@ const Header = () => {
         <div className={styles.headerSearchFieldContainer}>
           <input type="search" className={styles.searchInput}></input>
         </div>
-        <div className={styles.loginRegisterContainer}>
-          <span className={styles.loginRegisterText}>
-            {!isLoggedIn && (
-              <button onClick={loginHandler}>Login / Register</button>
-            )}
-          </span>
+        {!isLoggedIn && (
+          <div className={styles.loginRegisterContainer}>
+            <span className={styles.loginRegisterText}>
+              <LoginRegisterButton loginHandler = {loginHandler}/>
+              {/* <button onClick={loginHandler}>Login / Register</button> */}
+            </span>
+          </div>
+        )}
+        {/* <div className={styles.buttonsRow}> */}
+          <div className={styles.loginRegisterContainer}>
+            <span className={styles.loginRegisterText}>
+              {isLoggedIn && <CartButton />}
+            </span>
+          </div>
+          <div className={styles.loginRegisterContainer}>
+            <span className={styles.loginRegisterText}>
+              {isLoggedIn && <OrdersButton />}
+            </span>
+          </div>
+          <div className={styles.logoutContainer}>
+            <span className={styles.logout}>
+              {isLoggedIn && <LogOutButton/>}
+              {/* {isLoggedIn && <button onClick={logoutHandler}>Logout</button>} */}
+            </span>
+          </div>
         </div>
-        <div className={styles.loginRegisterContainer}>
-          <span className={styles.loginRegisterText}>
-            {isLoggedIn && <CartButton/>}
-          </span>
-        </div>
-        <div className={styles.loginRegisterContainer}>
-          <span className={styles.loginRegisterText}>
-            {isLoggedIn && <OrdersButton/>}
-          </span>
-        </div>
-        <div className={styles.logoutContainer}>
-          <span className={styles.logout}>
-            {isLoggedIn && <button onClick={logoutHandler}>Logout</button>}
-          </span>
-        </div>
-      </div>
+      {/* </div> */}
       {showLoginForm && <LoginForm onClose={closeLoginForm}></LoginForm>}
     </>
   );
