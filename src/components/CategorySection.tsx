@@ -1,7 +1,7 @@
 import styles from "./CategorySection.module.css";
 import "swiper/swiper-bundle.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import {Navigation, Pagination } from "swiper/modules";
 const CategorySection = () => {
   return (
     <>
