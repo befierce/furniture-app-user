@@ -22,6 +22,7 @@ const ProductsSection = () => {
       try {
         const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/products-list?pageSize=6`;
         const res = await fetch(url);
+        console.log("response of fetching user data",res);
         const json = await res.json();
         const data = json.documents.map((doc: any) => ({
           id: doc.name.split("/").pop(),

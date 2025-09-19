@@ -113,7 +113,7 @@ const LoginForm = ({ onClose }: LoginProps) => {
       alert(error.message);
     }
   };
-  const toggleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+  const toggleSignUp = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setSignUpForm(true);
   };

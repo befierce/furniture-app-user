@@ -1,10 +1,9 @@
-// Import Firebase SDK functions
+
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-// Firebase config
 export const firebaseConfig = {
   apiKey: "AIzaSyCZTUUzbf7tqWw7OQ3r9DRxogSuttgPLbA",
   authDomain: "furniture-web-app-ef64f.firebaseapp.com",
@@ -15,11 +14,9 @@ export const firebaseConfig = {
   measurementId: "G-1QQNEZ6Z5S"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-// Firestore instance
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export default app;

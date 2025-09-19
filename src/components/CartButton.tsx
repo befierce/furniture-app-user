@@ -6,7 +6,7 @@ import { useState } from "react";
 // import { getDoc, doc, updateDoc } from "firebase/firestore";
 // import { db } from "../firebaseConfig";
 // import Modal from "./Modal";
-const CartButton = (props: any) => {
+const CartButton = () => {
   const [showCart, setShowCart] = useState(false);
   const uid = useSelector((state: any) => state.auth.user.uid);
   console.log(uid);
