@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import Orders from "./Orders";
 
-const OrdersButton = (props: any) => {
+const OrdersButton = () => {
   const [showOrders, setShowOrders] = useState(false);
   const uid = useSelector((state: any) => state.auth.user.uid);
   const showOrdersHandler = () => {

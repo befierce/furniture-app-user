@@ -1,7 +1,7 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState} from "react";
+import { useSelector} from "react-redux";
 import LoginForm from "./LoginForm";
 import CartButton from "./CartButton";
 import OrdersButton from "./OrdersButton";

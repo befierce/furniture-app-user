@@ -1,7 +1,7 @@
 import Modal from "../components/Modal";
 import { useState, useRef } from "react";
 import LoginForm from "../components/LoginForm";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";

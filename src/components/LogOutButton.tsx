@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../store/authSlice";
 import styles from "./CartButton.module.css";
 const LogOutButton = () => {
