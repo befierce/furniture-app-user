@@ -1,11 +1,10 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import { useState} from "react";
-import { useSelector} from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import LoginForm from "./LoginForm";
 import CartButton from "./CartButton";
 import OrdersButton from "./OrdersButton";
-// import { logout } from "../store/authSlice";
 import LogOutButton from "./LogOutButton";
 import LoginRegisterButton from "./LoginRegisterButton";
 const Header = () => {
@@ -35,30 +34,31 @@ const Header = () => {
         </div>
         {!isLoggedIn && (
           <div className={styles.loginRegisterContainer}>
-            <span className={styles.loginRegisterText}>
-              <LoginRegisterButton loginHandler = {loginHandler}/>
-              {/* <button onClick={loginHandler}>Login / Register</button> */}
-            </span>
+              <LoginRegisterButton loginHandler={loginHandler} />
           </div>
         )}
-        {/* <div className={styles.buttonsRow}> */}
-          <div className={styles.loginRegisterContainer}>
-            <span className={styles.loginRegisterText}>
-              {isLoggedIn && <CartButton />}
-            </span>
-          </div>
-          <div className={styles.loginRegisterContainer}>
-            <span className={styles.loginRegisterText}>
-              {isLoggedIn && <OrdersButton />}
-            </span>
-          </div>
-          <div className={styles.logoutContainer}>
-            <span className={styles.logout}>
-              {isLoggedIn && <LogOutButton/>}
-              {/* {isLoggedIn && <button onClick={logoutHandler}>Logout</button>} */}
-            </span>
-          </div>
-        </div>
+        <>
+          {isLoggedIn && (
+            <div className={styles.buttonsWrapper}>
+              <div className={styles.loginRegisterContainer}>
+                <span className={styles.loginRegisterText}>
+                  <CartButton />
+                </span>
+              </div>
+              <div className={styles.loginRegisterContainer}>
+                {/* <span className={styles.loginRegisterText}> */}
+                  <OrdersButton />
+                {/* </span> */}
+              </div>
+              <div className={styles.logoutContainer}>
+                <span className={styles.logout}>
+                  <LogOutButton />
+                </span>
+              </div>
+            </div>
+          )}
+        </>
+      </div>
       {/* </div> */}
       {showLoginForm && <LoginForm onClose={closeLoginForm}></LoginForm>}
     </>

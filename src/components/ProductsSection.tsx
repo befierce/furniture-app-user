@@ -16,13 +16,14 @@ interface Product {
 
 const ProductsSection = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/products-list?pageSize=12`;
         const res = await fetch(url);
-        console.log("response of fetching user data",res);
+        console.log("response of fetching user data", res);
         const json = await res.json();
         const data = json.documents.map((doc: any) => ({
           id: doc.name.split("/").pop(),
@@ -30,13 +31,21 @@ const ProductsSection = () => {
           title: doc.fields.title?.stringValue || "",
           vendor: doc.fields.vendor?.stringValue || "",
           description: doc.fields.description?.stringValue || "",
-          price: Number(doc.fields.price?.integerValue || Number(doc.fields.price?.stringValue) || 0),
+          price: Number(
+            doc.fields.price?.integerValue ||
+              Number(doc.fields.price?.stringValue) ||
+              0
+          ),
           imageUrl: doc.fields.imageUrl?.stringValue || "",
         }));
-        console.log(data)
+        console.log(data);
         setProducts(data);
       } catch (err) {
         console.error("Error fetching data", err);
+        // setIsLoading(false)
+      } 
+      finally {
+        setTimeout(() => setIsLoading(false), 5000);
       }
     };
 
@@ -46,35 +55,45 @@ const ProductsSection = () => {
   return (
     <>
       <CategorySection />
-      <div className={styles.productsWrapperOuterMost}>
-        {products.map((product) => (
-          <div className={styles.productContainerOuter} key={product.id}>
-            <Link
-              to={`/product/${product.id}`}
-              className={styles.productContainerInner}
-            >
-              <div className={styles.imageSectionContainer}>
-                {product.imageUrl && (
-                  <img src={product.imageUrl} alt={product.title} width={150} />
-                )}
-              </div>
-              <div className={styles.productMetaDataContainer}>
-                <div className={styles.productMetaDataContainerInner}>
-                  <div className={styles.productTitleContainer}>
-                    <h3>{product.title}</h3>
-                  </div>
-                  <div className={styles.productDescriptionContainer}>
-                    <p>{product.description}</p>
-                  </div>
-                  <div className={styles.productPriceContainer}>
-                    <b>Price:</b> ₹{product.price}
+      {isLoading ? (
+        <div className={styles.loadingSpinner}>
+          <div className={styles.spinner}></div>
+        </div>
+      ) : (
+        <div className={styles.productsWrapperOuterMost}>
+          {products.map((product) => (
+            <div className={styles.productContainerOuter} key={product.id}>
+              <Link
+                to={`/product/${product.id}`}
+                className={styles.productContainerInner}
+              >
+                <div className={styles.imageSectionContainer}>
+                  {product.imageUrl && (
+                    <img
+                      src={product.imageUrl}
+                      alt={product.title}
+                      width={150}
+                    />
+                  )}
+                </div>
+                <div className={styles.productMetaDataContainer}>
+                  <div className={styles.productMetaDataContainerInner}>
+                    <div className={styles.productTitleContainer}>
+                      <h3>{product.title}</h3>
+                    </div>
+                    <div className={styles.productDescriptionContainer}>
+                      <p>{product.description}</p>
+                    </div>
+                    <div className={styles.productPriceContainer}>
+                      <b>Price:</b> ₹{product.price}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };

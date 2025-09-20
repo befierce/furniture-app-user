@@ -17,6 +17,7 @@ interface Product {
 
 const CategoryProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { category } = useParams();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const CategoryProducts = () => {
         const res = await fetch(url);
         const json = await res.json();
         console.log("raw json data", json);
-        
+
         const allProducts: Product[] = json.documents.map((doc: any) => ({
           id: doc.name.split("/").pop(),
           category: doc.fields.category?.stringValue || "",
@@ -46,6 +47,10 @@ const CategoryProducts = () => {
         setProducts(filtered);
       } catch (err) {
         console.error("Error fetching data", err);
+      } finally {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       }
     };
 
@@ -55,43 +60,50 @@ const CategoryProducts = () => {
   return (
     <>
       <Header />
-      <div className={styles.productsWrapperOuterMost}>
-        {products.length > 0 ? (
-          products.map((product) => (
-            <div className={styles.productContainerOuter} key={product.id}>
-              <Link
-                to={`/product/${product.id}`}
-                className={styles.productContainerInner}
-              >
-                <div className={styles.imageSectionContainer}>
-                  {product.imageUrl && (
-                    <img
-                      src={product.imageUrl}
-                      alt={product.title}
-                      width={150}
-                    />
-                  )}
-                </div>
-                <div className={styles.productMetaDataContainer}>
-                  <div className={styles.productMetaDataContainerInner}>
-                    <div className={styles.productTitleContainer}>
-                      <h3>{product.title}</h3>
-                    </div>
-                    <div className={styles.productDescriptionContainer}>
-                      <p>{product.description}</p>
-                    </div>
-                    <div className={styles.productPriceContainer}>
-                      <b>Price:</b> ₹{product.price}
+      {isLoading ? (
+        <div className={styles.loadingSpinner}>
+          {" "}
+          <div className={styles.spinner}></div>{" "}
+        </div>
+      ) : (
+        <div className={styles.productsWrapperOuterMost}>
+          {products.length > 0 ? (
+            products.map((product) => (
+              <div className={styles.productContainerOuter} key={product.id}>
+                <Link
+                  to={`/product/${product.id}`}
+                  className={styles.productContainerInner}
+                >
+                  <div className={styles.imageSectionContainer}>
+                    {product.imageUrl && (
+                      <img
+                        src={product.imageUrl}
+                        alt={product.title}
+                        width={150}
+                      />
+                    )}
+                  </div>
+                  <div className={styles.productMetaDataContainer}>
+                    <div className={styles.productMetaDataContainerInner}>
+                      <div className={styles.productTitleContainer}>
+                        <h3>{product.title}</h3>
+                      </div>
+                      <div className={styles.productDescriptionContainer}>
+                        <p>{product.description}</p>
+                      </div>
+                      <div className={styles.productPriceContainer}>
+                        <b>Price:</b> ₹{product.price}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))
-        ) : (
-          <p>No products found in this category.</p>
-        )}
-      </div>
+                </Link>
+              </div>
+            ))
+          ) : (
+            <p>No products found in this category.</p>
+          )}
+        </div>
+      )}
     </>
   );
 };
