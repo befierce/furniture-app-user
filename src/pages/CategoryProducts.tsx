@@ -26,6 +26,7 @@ const CategoryProducts = () => {
         const res = await fetch(url);
         const json = await res.json();
         console.log("raw json data", json);
+        
         const allProducts: Product[] = json.documents.map((doc: any) => ({
           id: doc.name.split("/").pop(),
           category: doc.fields.category?.stringValue || "",

@@ -20,7 +20,7 @@ const ProductsSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/products-list?pageSize=6`;
+        const url = `https://firestore.googleapis.com/v1/projects/${firebaseConfig.projectId}/databases/(default)/documents/products-list?pageSize=12`;
         const res = await fetch(url);
         console.log("response of fetching user data",res);
         const json = await res.json();
