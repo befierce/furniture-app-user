@@ -5,6 +5,7 @@ import { firebaseConfig } from "../firebaseConfig";
 // import "../components/ProductsSection.module.css";
 import styles from "./CategoryProducts.module.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 interface Product {
   id: string;
   category: string;
@@ -104,6 +105,7 @@ const CategoryProducts = () => {
           )}
         </div>
       )}
+      {<Footer></Footer>}
     </>
   );
 };
