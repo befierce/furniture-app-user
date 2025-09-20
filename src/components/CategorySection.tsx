@@ -33,7 +33,7 @@ const CategorySection = () => {
             </SwiperSlide>
             <SwiperSlide>
               <a href="/products/categories/recliners">
-                <img src="recliners.webp" alt="recliners"></img>
+                <img src="/recliners.webp" alt="recliners"></img>
               </a>
             </SwiperSlide>
             <SwiperSlide>
