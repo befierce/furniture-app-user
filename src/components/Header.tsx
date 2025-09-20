@@ -1,20 +1,26 @@
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, type FormEvent, useRef } from "react";
 import { useSelector } from "react-redux";
 import LoginForm from "./LoginForm";
 import CartButton from "./CartButton";
 import OrdersButton from "./OrdersButton";
 import LogOutButton from "./LogOutButton";
 import LoginRegisterButton from "./LoginRegisterButton";
+import { FiSearch } from "react-icons/fi";
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
   const loginHandler = () => {
     setShowLoginForm(true);
   };
   const closeLoginForm = () => {
     setShowLoginForm(false);
+  };
+  const searchButtonHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(searchInputRef.current?.value);
   };
   return (
     <>
@@ -29,12 +35,23 @@ const Header = () => {
             <span className={styles.logoText}>......Glory Furnitures</span>
           </div>
         </Link>
-        <div className={styles.headerSearchFieldContainer}>
-          <input type="search" className={styles.searchInput}></input>
-        </div>
+        <form
+          className={styles.headerSearchFieldContainer}
+          onClick={searchButtonHandler}
+        >
+          <input
+            type="search"
+            className={styles.searchInput}
+            placeholder="Search furniture..."
+            ref={searchInputRef}
+          ></input>
+          <button className={styles.searchButton}>
+            <FiSearch size={20} />
+          </button>
+        </form>
         {!isLoggedIn && (
           <div className={styles.loginRegisterContainer}>
-              <LoginRegisterButton loginHandler={loginHandler} />
+            <LoginRegisterButton loginHandler={loginHandler} />
           </div>
         )}
         <>
@@ -47,7 +64,7 @@ const Header = () => {
               </div>
               <div className={styles.loginRegisterContainer}>
                 {/* <span className={styles.loginRegisterText}> */}
-                  <OrdersButton />
+                <OrdersButton />
                 {/* </span> */}
               </div>
               <div className={styles.logoutContainer}>

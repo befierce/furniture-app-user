@@ -45,7 +45,7 @@ const ProductsSection = () => {
         // setIsLoading(false)
       } 
       finally {
-        setTimeout(() => setIsLoading(false), 5000);
+        setTimeout(() => setIsLoading(false), 3000);
       }
     };
 
